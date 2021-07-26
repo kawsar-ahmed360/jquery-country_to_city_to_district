@@ -1,0 +1,24 @@
+    $('#cat_id').on('change',function(){
+        var catId = $(this).val();
+
+        if(catId){
+            $.ajax({
+                url:"{{route('CatToSubCate')}}",
+                type:"GET",
+                data:{catId:catId},
+                
+                success:function(data){
+
+                    var html ="<option>-----SELECT Once--------</option>";
+
+                    $.each(data,function(k,v){
+                        html+='<option value="'+v.id+'">'+v.sub_category_name+'</option>';
+                    })
+
+                    $('#sub_id').html(html);
+
+
+                }
+            })
+        }
+    })
